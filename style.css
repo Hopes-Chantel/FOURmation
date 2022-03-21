@@ -87,7 +87,9 @@
   .cell:not(.row-top).yellow.win {
     background: yellow;
   }
-  
+  .cell:not(.row-top).black.win {
+    background: black;
+  }
   .cell.row-top {
     background: lightgoldenrodyellow;
   }

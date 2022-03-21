@@ -2,9 +2,8 @@
 
 const allCells = document.querySelectorAll('.cell:not(.row-top)');
 const topCells = document.querySelectorAll('.cell.row-top');
-const replayBut = document.querySelector('.reset');
+const replayBut = document.querySelector('.replay');
 const statusSpan = document.querySelector('.status');
-
 
 const column0 = [allCells[35], allCells[28], allCells[21], allCells[14], allCells[7], allCells[0], topCells[0]];
 const column1 = [allCells[36], allCells[29], allCells[22], allCells[15], allCells[8], allCells[1], topCells[1]];
@@ -31,7 +30,6 @@ let gamePlay = true;
 let yellowIsNext = true;
 
 
-
 const getClassList = (cell) => {
   const classList = cell.classList;
   return [...classList];
@@ -52,7 +50,7 @@ const getCellLocation = (cell) => {
 
 
 
-const firstOpenCell = (indexOfColumn) => {
+ const firstOpenCell = (indexOfColumn) => {
   const column = columns[indexOfColumn];
   const columnWithoutTop = column.slice(0, 6);
 
@@ -70,6 +68,69 @@ const firstOpenCell = (indexOfColumn) => {
   // if there are no open cells
 };
 
+const changeChipColor = (indexOfColumn) => {
+  const topCell = topCells[indexOfColumn];
+  topCell.classList.remove('yellow');
+  topCell.classList.remove('black');
+  
+};
+
+const colorOfCell = (cell) => {
+const classList = getClassList(cell);
+if (classList.includes('yellow')) return 'yellow';
+if (classList.includes('black')) return 'black';
+return null;
+};
+
+const checkWinningCells = (cells) => { 
+  if (cells.length < 4) return false;
+
+  gamePlay = false;
+  for (const cell of cells) {
+    cell.classList.add('win');
+  }
+  statusSpan.textContent = `${yellowIsNext ? 'Yellow' : 'Black'} has won!`
+  return true;
+};
+
+
+const gameStatus = (cell) => {
+  const color = colorOfCell(cell);
+  if (!color) return;
+  const [indexOfRow, indexOfColumn] = getCellLocation(cell);
+  
+  // horizontal cells
+let winningCells= [cell];
+let checkPatternRow = indexOfRow;
+let checkPatternCol = indexOfColumn -1;
+while (checkPatternCol >= 0) {
+  const checkCell = rows[checkPatternRow][checkPatternCol];
+  if (colorOfCell(checkCell) === color) {
+    winningCells.push(checkCell);
+    checkPatternCol--;
+  } else {
+    break;
+  }
+}
+checkPatternCol = indexOfColumn +1;
+while (checkPatternCol <=6) {
+  const checkCell = rows[checkPatternRow][checkPatternCol];
+  if (colorOfCell(checkCell) === color) {
+    winningCells.push(checkCell);
+    checkPatternCol++;
+  } else {
+    break;
+  }
+};
+
+let isWinningCombo = checkWinningCells(winningCells);
+if (isWinningCombo) return;
+}
+
+
+
+// }
+
 
 // check for status of game
 // has any color won?
@@ -83,7 +144,6 @@ const mouseoverCell = (e) => {
   if (!gamePlay) return;
   const cell = e.target;
   const [indexOfRow, indexOfColumn] = getCellLocation(cell)
-
   const topCell = topCells[indexOfColumn];
   if (yellowIsNext) {
     topCell.classList.add('yellow');
@@ -93,30 +153,29 @@ const mouseoverCell = (e) => {
 };
 // shows game piece at column that player is hovering over
 
- const mouseoutCell  = (e) => {
-   const cell = e.target;
-   const [indexOfRow, indexOfColumn] = getCellLocation(cell);
+mouseoutCell  = (e) => {
+const cell = e.target;
+const [indexOfRow, indexOfColumn] = getCellLocation(cell);
+changeChipColor(indexOfColumn);
 
-   const topCell = topCells[indexOfColumn];;
-  topCell.classList.remove('yellow')
-  topCell.classList.remove('black');
-   
- };
+};
 
- const clickOnCell = (e) => {
-  const cell = e.target;
-  const [indexOfRow, indexOfColumn] = getCellLocation(cell);
+clickOnCell = (e) => {
+const cell = e.target;
+const [indexOfRow, indexOfColumn] = getCellLocation(cell);
 
-  const openCell = firstOpenCell(indexOfColumn);
-
-  if (!openCell) return;
+const openCell = firstOpenCell(indexOfColumn);
+if (!openCell) return;
 
   openCell.classList.add(yellowIsNext ? 'yellow' : 'black');
-  // game should be checked after each try to see if game has been won 
+  gameStatus(openCell);
+
 
   yellowIsNext = !yellowIsNext;
+  changeChipColor(indexOfColumn);
+
   //  make top turn to next color
- }
+ };
 
 // removes the game piece at top when the mouse is no longer hovering over the specific cell 
 
@@ -129,3 +188,16 @@ for (const row of rows) {
   }
 }
 
+replayBut.addEventListener('click', () => {
+for (const row of rows) {
+  for (const cell of row) {
+    cell.classList.remove('black');
+    cell.classList.remove('yellow');
+    cell.classList.remove('win');
+  }
+}
+
+ gamePlay = true;
+ yellowIsNext = true;
+
+});
