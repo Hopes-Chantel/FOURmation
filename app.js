@@ -101,6 +101,12 @@ const mouseoverCell = (e) => {
    
  };
 
+ const clickOnCell = (e) => {
+
+  // make sure column is not full and find first open spot in that column
+
+ }
+
 // removes the game piece at top when the mouse is no longer hovering over the specific cell 
 
 // Event Listeners
@@ -108,6 +114,7 @@ for (const row of rows) {
   for (const cell of row) {
     cell.addEventListener('mouseover', mouseoverCell);
     cell.addEventListener('mouseout', mouseoutCell);
+    cell.addEventListener('click', clickOnCell);
   }
 }
 
