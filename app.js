@@ -50,6 +50,8 @@ const getCellLocation = (cell) => {
   return [rowNum, colNum];
 };
 
+
+
 const getFirstOpenCellForColumn = (indexOfColumn) => {
   const column = columns[indexOfColumn];
   const columnWithoutTop = column.slice(0, 6);
@@ -71,9 +73,27 @@ const getFirstOpenCellForColumn = (indexOfColumn) => {
 // make sure there are 4 of the same color in the row (declare a variable for this?)
 // alert winner 
 
+
+
+
+// event handlers
+const mouseoverCell = (e) => {
+  if (!gamePlay) return;
+  const cell = e.target;
+  const [indexOfRow, indexOfColumn] = getCellLocation(cell)
+
+  const topCell = topCells[indexOfColumn];
+  if (yellowIsNext) {
+    topCell.classList.add('yellow');
+  } else {
+    topCell.classList.add('red');
+  }
+};
+
 // Event Listeners
 for (const row of rows) {
   for (const cell of row) {
-    cell.addEventListener('mouseover', cellMouseOver);
+    cell.addEventListener('mouseover', mouseoverCell);
   }
 }
+
