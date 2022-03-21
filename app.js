@@ -52,18 +52,22 @@ const getCellLocation = (cell) => {
 
 
 
-const getFirstOpenCellForColumn = (indexOfColumn) => {
+const firstOpenCell = (indexOfColumn) => {
   const column = columns[indexOfColumn];
   const columnWithoutTop = column.slice(0, 6);
 
+  // goes through columns and shows first available, also takes out the top row that is "outside" of the game 
+  // board that is only used to show which column user is hovering over. 
+
   for (const cell of columnWithoutTop) {
     const classList = getClassList(cell);
-    if (!classList.includes('yellow') && !classList.includes('red')) {
+    if (!classList.includes('yellow') && !classList.includes('black')) {
       return cell;
     }
   }
-
+// if the class is not red or black that means it is open and is the next available cell 
   return null;
+  // if there are no open cells
 };
 
 
@@ -72,8 +76,6 @@ const getFirstOpenCellForColumn = (indexOfColumn) => {
 // vertical, diagonal, horizontal
 // make sure there are 4 of the same color in the row (declare a variable for this?)
 // alert winner 
-
-
 
 
 // event handlers
@@ -102,9 +104,18 @@ const mouseoverCell = (e) => {
  };
 
  const clickOnCell = (e) => {
+  const cell = e.target;
+  const [indexOfRow, indexOfColumn] = getCellLocation(cell);
 
-  // make sure column is not full and find first open spot in that column
+  const openCell = firstOpenCell(indexOfColumn);
 
+  if (!openCell) return;
+
+  openCell.classList.add(yellowIsNext ? 'yellow' : 'black');
+  // game should be checked after each try to see if game has been won 
+
+  yellowIsNext = !yellowIsNext;
+  //  make top turn to next color
  }
 
 // removes the game piece at top when the mouse is no longer hovering over the specific cell 
