@@ -3,8 +3,6 @@
     padding: 0;
     box-sizing: border-box;
     color: black
-    /* width: 100vw; */
-    /* height: 100vh; */
   }
   
   body {
@@ -31,7 +29,7 @@
     display: grid;
     width: 400px;
     height: 700;
-    position: fixed;
+    position: absolute;
     grid-row-start: 1fr;
     margin-left: 10%;
     left: 0;
@@ -49,7 +47,7 @@
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(7, 1fr);
     height: 700px;
-    margin: 10px 0 25px;
+    margin: 15x 1 30px;
     width: 700px;
   }
   
@@ -65,11 +63,11 @@
   .cell::after {
     background: lightgoldenrodyellow;
     border-radius: 50%;
-    border: 3px solid black;
+    border: 3px solid white;
     content: '';
     cursor: grab;
-    height: 75px;
-    width: 75px;
+    height: 85px;
+    width: 85px;
   }
   
   .cell:not(.row-top).black::after {
@@ -84,7 +82,7 @@
   }
   
   .cell.row-top {
-    background: white;
+    background: lightgoldenrodyellow;
   }
   
   .cell.row-top::after {
@@ -112,13 +110,13 @@
     background-color: #cfac10;
     border-radius: 5px;
     border: none;
+    border-radius: 25%;
     color: white;
     cursor: pointer;
-    /* display: block; */
+    margin-top: 20px;
     font-size: 23px;
     font-weight: bold;
     padding: 15px 30px;
-    text-transform: uppercase;
   }
   
   .replay:hover {
@@ -141,35 +139,35 @@
         right: 10px;
 }
   
-  /* Util CSS */
+/* board styling */
   .left-border {
-    border-left: 3px solid black;
+    border-left: 6px solid black;
   }
   
   .top-border {
-    border-top: 3px solid black;
+    border-top: 6px solid black;
   }
   
   .right-border {
-    border-right: 3px solid black;
+    border-right: 6px solid black;
   }
   
   .bottom-border {
-    border-bottom: 3px solid black;
+    border-bottom: 6px solid black;
   }
   
   .left-border.top-border {
-    border-radius: 10px 0 0 0;
+    border-radius: 20px 0 0 0;
   }
   
   .right-border.top-border {
-    border-radius: 0 10px 0 0;
+    border-radius: 0 20px 0 0;
   }
   
   .right-border.bottom-border {
-    border-radius: 0 0 10px 0;
+    border-radius: 0 0 20px 0;
   }
   
   .left-border.bottom-border {
-    border-radius: 0 0 0 10px;
+    border-radius: 0 0 0 20px;
   }
