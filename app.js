@@ -86,14 +86,28 @@ const mouseoverCell = (e) => {
   if (yellowIsNext) {
     topCell.classList.add('yellow');
   } else {
-    topCell.classList.add('red');
+    topCell.classList.add('black');
   }
 };
+// shows game piece at column that player is hovering over
+
+ const mouseoutCell  = (e) => {
+   const cell = e.target;
+   const [indexOfRow, indexOfColumn] = getCellLocation(cell);
+
+   const topCell = topCells[indexOfColumn];;
+  topCell.classList.remove('yellow')
+  topCell.classList.remove('black');
+   
+ };
+
+// removes the game piece at top when the mouse is no longer hovering over the specific cell 
 
 // Event Listeners
 for (const row of rows) {
   for (const cell of row) {
     cell.addEventListener('mouseover', mouseoverCell);
+    cell.addEventListener('mouseout', mouseoutCell);
   }
 }
 

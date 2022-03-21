@@ -72,7 +72,7 @@
     width: 75px;
   }
   
-  .cell:not(.row-top).red::after {
+  .cell:not(.row-top).black::after {
     background: black;
   }
   .cell:not(.row-top).yellow::after {
@@ -91,7 +91,7 @@
     border: none;
   }
   
-  .cell.row-top.red::after {
+  .cell.row-top.black::after {
     background: black;
     border: 3px solid black;
   }
