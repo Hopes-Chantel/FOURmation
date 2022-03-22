@@ -10,7 +10,7 @@
   body {
     display: flex;
     position: absolute;
-    background: lightgoldenrodyellow;
+    background-image: url(https://dynaimage.cdn.cnn.com/cnn/q_auto,w_1905,c_fill,g_auto,h_1072,ar_16:9/http%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F190419111050-02-beyonce-homecoming-opera.jpg);
     flex-direction: column;
     align-content: center;
     justify-content: flex-start;
@@ -29,6 +29,12 @@
     margin-top: -200;
   }
 
+h2 {
+  display: flex;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 2000;
+  font-size: 20px;
+}
   #container{
     position:relative;
     width: 100px;
@@ -43,7 +49,7 @@
     position: absolute;
     grid-row-start: 1fr;
     left: 400px;
-    right: 1000px;
+    right: 1200px;
     top: 400px;
     bottom:0;
   
@@ -61,7 +67,7 @@
   
   .cell {
     align-items: center;
-    background: grey;
+    background: rgb(120, 86, 84);
     display: flex;
     height: 70px;
     justify-content: center;
@@ -71,7 +77,7 @@
   }
   
   .cell::after {
-    background: lightgoldenrodyellow;
+    background: transparent;
     border-radius: 50%;
     border: 3px solid white;
     content: '';
@@ -84,11 +90,11 @@
     background: black;
   }
   .cell:not(.row-top).yellow::after {
-    background: yellow;
+    background: rgb(162, 116, 41);
   }
   
   .cell:not(.row-top).yellow.win {
-    background: yellow;
+    background: rgb(162, 116, 41);
   }
   .cell:not(.row-top).black.win {
     background: black;
@@ -108,7 +114,7 @@
   }
   
   .cell.row-top.yellow::after {
-    background: yellow;
+    background: rgb(162, 116, 41);
     border: 3px solid black;
   }
   .footer {
@@ -143,6 +149,7 @@
   
   .status {
     display: block;
+    background-color: rgb(162, 116, 41);
     font-size: 20px;
     margin-top: 100px;
   }
