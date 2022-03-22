@@ -37,7 +37,7 @@
    #container img {
     display: grid;
     width: 400px;
-    height: 700;
+    height: 700px;
     position: absolute;
     grid-row-start: 1fr;
     left: 0;

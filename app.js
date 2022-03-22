@@ -26,6 +26,7 @@ const row5 = [allCells[35], allCells[36], allCells[37], allCells[38], allCells[3
 const rows = [row0, row1, row2, row3, row4, row5, topRow];
 
 
+
 let gamePlay = true;
 let yellowIsNext = true;
 
@@ -90,7 +91,8 @@ const checkWinningCells = (cells) => {
     cell.classList.add('win');
   }
   statusSpan.textContent = `${yellowIsNext ? 'Yellow' : 'Black'} has won!`
-  return true;
+  return false;
+
 };
 
 
@@ -124,8 +126,12 @@ while (checkPatternCol <=6) {
 };
 
 let isWinningCombo = checkWinningCells(winningCells);
-if (isWinningCombo) return;
+if (isWinningCombo) {
+  gamePlay= false;
+  return;
+};
 }
+
 
 
 
@@ -161,6 +167,7 @@ changeChipColor(indexOfColumn);
 };
 
 clickOnCell = (e) => {
+  if (!gamePlay) return;
 const cell = e.target;
 const [indexOfRow, indexOfColumn] = getCellLocation(cell);
 
@@ -180,13 +187,17 @@ if (!openCell) return;
 // removes the game piece at top when the mouse is no longer hovering over the specific cell 
 
 // Event Listeners
+
+
 for (const row of rows) {
   for (const cell of row) {
     cell.addEventListener('mouseover', mouseoverCell);
     cell.addEventListener('mouseout', mouseoutCell);
     cell.addEventListener('click', clickOnCell);
   }
-}
+};
+
+
 
 replayBut.addEventListener('click', () => {
 for (const row of rows) {
@@ -197,7 +208,7 @@ for (const row of rows) {
   }
 }
 
- gamePlay = true;
- yellowIsNext = true;
-
+gamePlay = true;
+yellowIsNext = true;
+statusSpan.textContent = ''
 });
