@@ -91,7 +91,7 @@ const checkWinningCells = (cells) => {
     cell.classList.add('win');
   }
   statusSpan.textContent = `${yellowIsNext ? 'Yellow' : 'Black'} has won!`
-  return false;
+  return true;
 
 };
 
@@ -124,18 +124,99 @@ while (checkPatternCol <=6) {
     break;
   }
 };
+let connectFour = checkWinningCells(winningCells);
+if (connectFour) return;
 
-let isWinningCombo = checkWinningCells(winningCells);
-if (isWinningCombo) {
-  gamePlay= false;
-  return;
-};
+// vertical
+winningCells= [cell];
+checkPatternRow = indexOfRow -1;
+checkPatternCol = indexOfColumn;
+while (checkPatternRow >= 0) {
+  const checkCell = rows[checkPatternRow][checkPatternCol];
+  if (colorOfCell(checkCell) === color) {
+    winningCells.push(checkCell);
+    checkPatternRow--;
+  } else {
+    break;
+  }
 }
+checkPatternRow = indexOfRow+1;
+while (checkPatternRow <=5) {
+  const checkCell = rows[checkPatternRow][checkPatternCol];
+  if (colorOfCell(checkCell) === color) {
+    winningCells.push(checkCell);
+    checkPatternRow++;
+  } else {
+    break;
+  }
+};
+connectFour = checkWinningCells(winningCells);
+if (connectFour) return;
+
+// diagonal LR 
+
+winningCells= [cell];
+checkPatternRow = indexOfRow +1;
+checkPatternCol = indexOfColumn -1;
+while (checkPatternCol >=0 && checkPatternRow <= 5) {
+  const checkCell = rows[checkPatternRow][checkPatternCol];
+  if (colorOfCell(checkCell) === color) {
+    winningCells.push(checkCell);
+    checkPatternRow++;
+    checkPatternCol--;
+  } else {
+    break;
+  }
+}
+checkPatternRow = indexOfRow -1;
+checkPatternCol = indexOfColumn +1;
+while (checkPatternCol <=6 && checkPatternRow >= 0) {
+  const checkCell = rows[checkPatternRow][checkPatternCol];
+  if (colorOfCell(checkCell) === color) {
+    winningCells.push(checkCell);
+    checkPatternRow--;
+    checkPatternCol++;
+  } else {
+    break;
+  }
+};
+connectFour = checkWinningCells(winningCells);
+if (connectFour) return;
 
 
 
+// diagonal RL
 
-// }
+winningCells= [cell];
+checkPatternRow = indexOfRow -1;
+checkPatternCol = indexOfColumn -1;
+while (checkPatternCol >=0 && checkPatternRow >= 0) {
+  const checkCell = rows[checkPatternRow][checkPatternCol];
+  if (colorOfCell(checkCell) === color) {
+    winningCells.push(checkCell);
+    checkPatternRow--;
+    checkPatternCol--;
+  } else {
+    break;
+  }
+}
+checkPatternRow = indexOfRow +1;
+checkPatternCol = indexOfColumn +1;
+while (checkPatternCol <=6 && checkPatternRow <= 6) {
+  const checkCell = rows[checkPatternRow][checkPatternCol];
+  if (colorOfCell(checkCell) === color) {
+    winningCells.push(checkCell);
+    checkPatternRow++;
+    checkPatternCol++;
+  } else {
+    break;
+  }
+};
+connectFour = checkWinningCells(winningCells);
+if (connectFour) return;
+
+// check to see if tie 
+};
 
 
 // check for status of game
