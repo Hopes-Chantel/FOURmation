@@ -51,9 +51,9 @@ const getCellLocation = (cell) => {
 
 
 
- const firstOpenCell = (indexOfColumn) => {
-  const column = columns[indexOfColumn];
-  const columnWithoutTop = column.slice(0, 6);
+const firstOpenCell = (indexOfColumn) => {
+const column = columns[indexOfColumn];
+const columnWithoutTop = column.slice(0, 6);
 
   // goes through columns and shows first available, also takes out the top row that is "outside" of the game 
   // board that is only used to show which column user is hovering over. 
@@ -215,7 +215,17 @@ while (checkPatternCol <=6 && checkPatternRow <= 6) {
 connectFour = checkWinningCells(winningCells);
 if (connectFour) return;
 
-// check to see if tie 
+const emptyTop = rows.slice(0,6);
+for (const row of emptyTop){
+  for (const cell of row) {
+    const classList = getClassList(cell);
+    if (!classList.includes('yellow') && !classList.includes('black')) {
+      return;
+    }
+  }
+}
+gamePlay = false;
+statusSpan.textContent = "Its a Tie";
 };
 
 

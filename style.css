@@ -5,44 +5,46 @@
     color: black
   }
   html {
-    height: 95vh;
+    height: 90vh;
   }
   body {
-    position: absolute;
-    display: grid;
-    grid-template-columns: 1fr,1fr,1fr,1fr;
-    align-items: center;
-    background: lightgoldenrodyellow;
     display: flex;
+    position: absolute;
+    background: lightgoldenrodyellow;
     flex-direction: column;
+    align-content: center;
+    justify-content: flex-start;
     font-family: sans-serif;
-    padding: 25px;
     width: 100vw;
     height: 100vh;
-    
+    align-items: center;
   }
   
   h1 {
+    display: flex;
     font-family:'Codystar', cursive;
-    font-size: 90px;
+    font-size: 60px;
     font-weight: 2000;
+    margin: -100px 0 -90x 0px;
+    margin-top: -200;
   }
 
   #container{
     position:relative;
     width: 100px;
     height: 100px;
-    right: 700px;
+    right: 800px;
+    bottom: 100px;
 }
-   #container img {
+  #container img {
     display: grid;
-    width: 400px;
-    height: 700px;
+    width: 200px;
+    height: 500px;
     position: absolute;
     grid-row-start: 1fr;
-    left: 0;
-    right: 300px;
-    top: 0;
+    left: 400px;
+    right: 1000px;
+    top: 400px;
     bottom:0;
   
 }
@@ -51,18 +53,19 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(7, 1fr);
-    height:700px;
-    margin: 90 1 60px;
-    width: 700px;
+    height: 400px;
+    padding-top: 0;
+    margin-top: 0;
+    width: 400px;
   }
   
   .cell {
     align-items: center;
     background: grey;
     display: flex;
-    height: 100px;
+    height: 70px;
     justify-content: center;
-    width: 100px;
+    width: 70px;
     padding-bottom: 10px;
     padding-top:10px;
   }
@@ -73,8 +76,8 @@
     border: 3px solid white;
     content: '';
     cursor: grab;
-    height: 85px;
-    width: 85px;
+    height: 60px;
+    width: 60px;
   }
   
   .cell:not(.row-top).black::after {
@@ -91,11 +94,12 @@
     background: black;
   }
   .cell.row-top {
-    background: lightgoldenrodyellow;
+    background: transparent;
   }
   
   .cell.row-top::after {
     border: none;
+
   }
   
   .cell.row-top.black::after {
@@ -121,7 +125,7 @@
     border-radius: 25%;
     color: white;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 100px;
     margin-left: 250px;
     font-size: 23px;
     font-weight: bold;
@@ -140,6 +144,7 @@
   .status {
     display: block;
     font-size: 20px;
+    margin-top: 100px;
   }
 
   h4 {
@@ -150,7 +155,7 @@
   
 /* board styling */
   .left-border {
-    border-left: 10px solid black;
+    border-left: 6px solid black;
   }
   
   .top-border {
@@ -158,7 +163,7 @@
   }
   
   .right-border {
-    border-right: 10px solid black;
+    border-right: 6px solid black;
   }
   
   .bottom-border {
@@ -180,3 +185,14 @@
   .left-border.bottom-border {
     border-radius: 0 0 0 20px;
   }
+  @media screen and (max-width: 1200px) {
+    .menu { 
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .menu {
+        width: 30%;
+    }
+}
