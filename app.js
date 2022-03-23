@@ -4,6 +4,8 @@ const allCells = document.querySelectorAll('.cell:not(.row-top)');
 const topCells = document.querySelectorAll('.cell.row-top');
 const replayBut = document.querySelector('.replay');
 const statusSpan = document.querySelector('.status');
+// let audio = new Audio ("Coin.mp3");
+
 
 const column0 = [allCells[35], allCells[28], allCells[21], allCells[14], allCells[7], allCells[0], topCells[0]];
 const column1 = [allCells[36], allCells[29], allCells[22], allCells[15], allCells[8], allCells[1], topCells[1]];
@@ -227,13 +229,6 @@ for (const row of emptyTop){
 gamePlay = false;
 statusSpan.textContent = "Its a Tie";
 };
-
-
-// check for status of game
-// has any color won?
-// vertical, diagonal, horizontal
-// make sure there are 4 of the same color in the row (declare a variable for this?)
-// alert winner 
 
 
 // event handlers
