@@ -4,7 +4,6 @@ const allCells = document.querySelectorAll('.cell:not(.row-top)');
 const topCells = document.querySelectorAll('.cell.row-top');
 const replayBut = document.querySelector('.replay');
 const statusSpan = document.querySelector('.status');
-// let audio = new Audio ("Coin.mp3");
 
 
 const column0 = [allCells[35], allCells[28], allCells[21], allCells[14], allCells[7], allCells[0], topCells[0]];
@@ -26,7 +25,6 @@ const row3 = [allCells[21], allCells[22], allCells[23], allCells[24], allCells[2
 const row4 = [allCells[28], allCells[29], allCells[30], allCells[31], allCells[32], allCells[33], allCells[34]];
 const row5 = [allCells[35], allCells[36], allCells[37], allCells[38], allCells[39], allCells[40], allCells[41]];
 const rows = [row0, row1, row2, row3, row4, row5, topRow];
-
 
 
 let gamePlay = true;
@@ -66,7 +64,7 @@ const columnWithoutTop = column.slice(0, 6);
       return cell;
     }
   }
-// if the class is not red or black that means it is open and is the next available cell 
+ // Identifies if the class is not yellow or black that means it is open and is the next available cell 
   return null;
   // if there are no open cells
 };
@@ -97,13 +95,13 @@ const checkWinningCells = (cells) => {
 
 };
 
-
 const gameStatus = (cell) => {
   const color = colorOfCell(cell);
   if (!color) return;
   const [indexOfRow, indexOfColumn] = getCellLocation(cell);
   
-  // horizontal cells
+
+  // horizontal cells win check
 let winningCells= [cell];
 let checkPatternRow = indexOfRow;
 let checkPatternCol = indexOfColumn -1;
@@ -129,7 +127,7 @@ while (checkPatternCol <=6) {
 let connectFour = checkWinningCells(winningCells);
 if (connectFour) return;
 
-// vertical
+// vertical cells win check
 winningCells= [cell];
 checkPatternRow = indexOfRow -1;
 checkPatternCol = indexOfColumn;
@@ -155,7 +153,7 @@ while (checkPatternRow <=5) {
 connectFour = checkWinningCells(winningCells);
 if (connectFour) return;
 
-// diagonal LR 
+// diagonal LR cells win check
 
 winningCells= [cell];
 checkPatternRow = indexOfRow +1;
@@ -186,8 +184,7 @@ connectFour = checkWinningCells(winningCells);
 if (connectFour) return;
 
 
-
-// diagonal RL
+// diagonal RL cells win check
 
 winningCells= [cell];
 checkPatternRow = indexOfRow -1;
@@ -217,6 +214,8 @@ while (checkPatternCol <=6 && checkPatternRow <= 6) {
 connectFour = checkWinningCells(winningCells);
 if (connectFour) return;
 
+// TIE win check 
+
 const emptyTop = rows.slice(0,6);
 for (const row of emptyTop){
   for (const cell of row) {
@@ -243,7 +242,8 @@ const mouseoverCell = (e) => {
     topCell.classList.add('black');
   }
 };
-// shows game piece at column that player is hovering over
+
+// Shows game piece at column that player is hovering over
 
 mouseoutCell  = (e) => {
 const cell = e.target;
@@ -267,14 +267,10 @@ if (!openCell) return;
   yellowIsNext = !yellowIsNext;
   changeChipColor(indexOfColumn);
 
-  //  make top turn to next color
- };
-
-// removes the game piece at top when the mouse is no longer hovering over the specific cell 
+};
+ //  makes top turn to next color
 
 // Event Listeners
-
-
 for (const row of rows) {
   for (const cell of row) {
     cell.addEventListener('mouseover', mouseoverCell);
@@ -282,7 +278,9 @@ for (const row of rows) {
     cell.addEventListener('click', clickOnCell);
   }
 };
-
+// adds gamepiece to top of columm when mouse is hovering over cells
+// removes gamepiece to top of columm when mouse is hovering over cells
+// listens for click over cell
 
 
 replayBut.addEventListener('click', () => {
@@ -293,7 +291,7 @@ for (const row of rows) {
     cell.classList.remove('win');
   }
 }
-
+// removes classes when Replay Button is pressed to present an empty game board
 gamePlay = true;
 yellowIsNext = true;
 statusSpan.textContent = ''
