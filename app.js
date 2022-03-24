@@ -1,7 +1,7 @@
 
 
-const allCells = document.querySelectorAll('.cell:not(.row-top)');
-const topCells = document.querySelectorAll('.cell.row-top');
+const allCells = document.querySelectorAll('.cell:not(.toprow)');
+const topCells = document.querySelectorAll('.cell.toprow');
 const replayBut = document.querySelector('.replay');
 const statusSpan = document.querySelector('.status');
 
