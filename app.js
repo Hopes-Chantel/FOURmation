@@ -258,7 +258,7 @@ changeChipColor(indexOfColumn);
 
 topCell = topCells[indexOfColumn];
 topCell.classList.remove('yellow');
-topCell.classList.remove('red');
+topCell.classList.remove('black');
 };
 // removes class of coin when mouse is not over game 
 
