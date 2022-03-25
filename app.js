@@ -93,6 +93,7 @@ const checkWinningCells = (cells) => {
   gamePlay = false;
   for (const cell of cells) {
     cell.classList.add('win');
+
   }
   statusSpan.textContent = `${yellowIsNext ? 'Yellow' : 'Black'} has won!`
   return true;
@@ -283,16 +284,21 @@ if (!openCell) return;
  //  makes top turn to next color
 
 // Event Listeners
+
+
 for (const row of rows) {
   for (const cell of row) {
     cell.addEventListener('mouseover', mouseoverCell);
     cell.addEventListener('mouseout', mouseoutCell);
     cell.addEventListener('click', clickOnCell);
-  }
-};
+}};
+
+
 // adds gamepiece to top of columm when mouse is hovering over cells
 // removes gamepiece to top of columm when mouse is hovering over cells
 // listens for click over cell
+
+
 
 
 replayBut.addEventListener('click', () => {

@@ -26,7 +26,7 @@
 
 ## Getting Started:
 
-##### Deployed game to be here shortly
+#### Play Here! https://hopes-chantel.github.io/FOURmation/
 
 ## Next steps: 
 #### Some of my planned improvements for this game are..
