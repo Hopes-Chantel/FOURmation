@@ -22,7 +22,6 @@
 
 ##### ![game board](https://i.imgur.com/Bj9TWHp.png)
 
-#### Play Here! https://hopes-chantel.github.io/FOURmation/
 
 ## Getting Started:
 
